@@ -1,0 +1,94 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg fixed-top py-2 navbar-inverse">
+    <a class="navbar-brand" href="{% url 'core:index' %}">Travel World</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    {% if user.is_authenticated %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item cool-link">
+                <!--        <a class="nav-link" href="#">Home </a>-->
+                <a class="nav-link " href="{% url 'core:index'%}">Home</a>
+            </li>
+            {% if user.is_superuser %}
+            <li class="nav-item cool-link"><a class="nav-link" href="/admin">Admin</a></li>
+
+            <li class="nav-item dropdown cool-link">
+                <a class="nav-link dropdown-toggle" href="{% url 'core:project' %}" role="button"
+                   data-toggle="dropdown" aria-haspopup="true">
+                    Travel
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'core:project' %}">Manage Travel Forms</a>
+                    <a class="dropdown-item" href="{% url 'core:project-add' %}">Add New</a>
+                </div>
+            </li>
+
+                        <li class="nav-item dropdown cool-link">
+                <a class="nav-link dropdown-toggle" href="{% url 'api:guest_list' %}" role="button"
+                   data-toggle="dropdown" aria-haspopup="true">
+                    Hotel
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'api:guest_list' %}">Manage hotel Forms</a>
+                    <a class="dropdown-item" href="{% url 'api:guest_create' %}">Add New</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown cool-link">
+                <a class="nav-link dropdown-toggle" href="{% url 'core:posts' %}" role="button"
+                   data-toggle="dropdown" aria-haspopup="true">
+                    Blog Posts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'core:posts' %}">Manage Blog Posts</a>
+                    <a class="dropdown-item" href="{% url 'core:blog' %}">Add New</a>
+                </div>
+            </li>
+
+            {% endif %}
+            &nbsp &nbsp &nbsp &nbsp
+            <li style="margin-top:13px;" class="nav-item">Hi {{user.username|title}}</li>
+            <li id="logout" class="nav-item ">
+                <a class="nav-link" href="{% url 'admin:logout' %}">
+                    <img width="20px" height="20px" src="{% static 'images/logout.png' %} ">
+                </a>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+    {% endif %}
+
+
+</nav>
+<script>
+$(document).ready(function () {
+
+  $('.dropdown').mouseenter(function () {
+    $(this).find('.dropdown-menu').show('slow');
+  })
+  $('.dropdown').mouseleave(function () {
+    $(this).find('.dropdown-menu').hide('slow');
+  })
+})
+
+</script>
+
+<!--<script>-->
+<!--        $(document).ready(function () {-->
+
+<!--            $('ul.navbar-nav > li')-->
+<!--                    .click(function (e) {-->
+<!--                $('ul.navbar-nav > li')-->
+<!--                    .removeClass('active');-->
+<!--                $(this).addClass('active');-->
+<!--            });-->
+
+
+<!--    </script>-->
+

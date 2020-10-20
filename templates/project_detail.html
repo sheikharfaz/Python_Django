@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div style="margin-top:60px; text-align:center; padding-top:30px;" class="container col-lg-8 ">
+
+    <div style="color:white; text-align:center;background-color:grey;height:50px;" class="row"><h2>User Details:</h2>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Name :</strong></div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Name }}</div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Age :</strong></div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Age }}</div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Gender :</strong>
+        </div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Gender }}</div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Leaving From
+            :</strong></div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Leaving_From }}
+        </div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Going To :</strong>
+        </div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Going_To }}</div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Date Of Journey
+            :</strong></div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Date_Of_Journey }}
+        </div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Date of return
+            :</strong></div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Date_of_return }}
+        </div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Additional feature
+            :</strong></div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Additional_feature }}
+        </div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Opted services
+            :</strong></div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.services.all|join:" and " }}
+        </div>
+        <div></div>
+    </div>
+    <div class="row">
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6 "><strong>Type of vehicle
+            :</strong></div>
+        <div style="height:40px;padding-top:5px;background-color:#f7e6ff;border: 1px solid #e6b3ff;" class="col-md-6">{{ project.Type_of_vehicle }}
+        </div>
+        <div></div>
+    </div>
+</div>
+<div style="margin:20px; text-align:center;" class="container col-lg-12 ">
+    <a class="btn btn-success"  href="{% url 'core:project_update' project.pk %}">Edit</a>
+&nbsp
+    <form style="display:inline;" action="{% url 'core:project_delete' project.pk %}" method="post">{% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="Delete"/>
+    </form>
+    &nbsp
+    <a href="{% url 'core:project' %}" class="btn btn-info"> Back to Forms</a>
+</div>
+    {% endblock %}
+

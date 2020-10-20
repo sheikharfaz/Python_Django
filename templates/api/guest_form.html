@@ -1,0 +1,95 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load form_field %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div style="padding-top:70px;" class="background111">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div style="margin-left:50%; margin-top:20px; ">
+            <div style=" text-align:center;margin-left:20%;width:50%;" class="bg-dark rounded"><h2>Add Guest</h2></div>
+            </br>
+            <div class="container" style="width:60%;">
+                <div class="row">
+                    <div class="col-md-4 bg-dark rounded">
+                        <span class="badge" style="color:white; font-size:15px; ">Name</span>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="name1" class="form-row ">
+<!--                            <fieldset disabled="disabled">-->
+                            {{form.customer_name|add_class:"form-control disabled"}}
+<!--                                </fieldset>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br> <br>
+
+            <div class="container" style="width:60%;">
+                <div class="row">
+                    <div class="col-md-4 bg-dark rounded">
+                        <span class="badge" style="color:white; font-size:15px; ">Mobile No</span>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="name2" class="form-row">
+                            {{form.mobileNumber|add_class:"form-control"}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br> <br>
+
+            <div class="container" style="width:60%;">
+                <div class="row">
+                    <div class="col-md-4 bg-dark rounded">
+                        <span class="badge" style="color:white; font-size:15px; ">Age</span>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="name3" class="form-row">
+                            {{form.Age|add_class:"form-control"}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br> <br>
+
+            <div class="container" style="width:60%;">
+                <div class="row">
+                    <div class="col-md-4 bg-dark rounded">
+                        <span class="badge" style="color:white; font-size:15px; ">Hotel</span>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="name4" class="form-row">
+                            {{form.hotel|add_class:"form-control"}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br> <br>
+
+
+        </div>
+
+    <div class="container" style=" margin-left:40%;width:60%;padding-bottom:20px; ">
+        <div class="d-flex justify-content-center">
+            {% if object %}
+            <div class="form-group">
+                <button class="btn btn-success" type="submit" value="save">
+                    <span class="glyphicon glyphicon-ok"></span>Save
+                </button>
+                {% else %}
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit" value="Submit">
+                        <span class="glyphicon glyphicon-ok"></span>Add
+                    </button>
+                    {% endif %}
+
+                    <a href="{% url 'api:guest_list' %}" class="btn bg-default bg-light"> Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock %}

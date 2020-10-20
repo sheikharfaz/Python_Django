@@ -1,0 +1,43 @@
+{% extends "core/base.html" %}
+{%block content%}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}">
+
+
+<div class="table-users">
+    <div class="header">Users</div>
+
+    <table cellspacing="0">
+        <tr style="text-align:center; text-transform: uppercase;">
+            <th>customer name</th>
+            <th>mobile Number</th>
+            <th>Age</th>
+            <th>hotel</th>
+            <th width="230">Actions</th>
+        </tr>
+        {% for guests in guest %}
+        <tr>
+            <td>{{ guests.customer_name}}</td>
+            <td>{{ guests.mobileNumber}}</td>
+            <td>{{ guests.Age}}</td>
+            <td>{{ guests.hotel}}</td>
+            <td class="column3">&nbsp &nbsp &nbsp &nbsp
+                <a href="{% url 'api:guest_edit' guests.id %}" class="btn btn-success">Edit</a>
+                &nbsp
+                <form style="display:inline;" action="{% url 'api:guest_delete' guests.pk %}"
+                      method="post"
+                      onsubmit="return confirm('Are you sure you want to delete {{ guests.customer_name|escapejs  }}?')">
+                    {% csrf_token %}
+                    <input class="btn btn-danger" type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+
+    </table>
+</div>
+
+
+{% endblock %}

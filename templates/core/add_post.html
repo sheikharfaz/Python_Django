@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container pt-5">
+    <div style="padding-top:20px;" class="container">
+    <form method="POST" novalidate enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field|add_class:"form-control" }}
+            {% for error in fields.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        {% if object %}
+        <div class="form-group">
+            <button class="btn btn-success" type="submit" value="save">
+                <span class="glyphicon glyphicon-ok"></span>Save
+            </button>
+            {% else %}
+            <div class="form-group">
+                <button class="btn btn-success" type="submit" value="Create">
+                    <span class="glyphicon glyphicon-ok"></span>Add
+                </button>
+                {% endif %}
+                <a href="{% url 'core:posts' %}" class="btn btn-default"> Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

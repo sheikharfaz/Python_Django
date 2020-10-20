@@ -1,0 +1,80 @@
+{% extends "core/base.html" %}
+{%block content%}
+{% load static %}
+
+<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+<div class="limiter">
+
+    <div class="container-table100">
+        <div style="padding:50px;">
+            <div class="wrap-table100">
+                <div class="table100">
+                    <table>
+                        <thead>
+                        <tr class="table100-head">
+                            <th class="column">Name</th>
+                            <th class="column">Leaving From</th>
+                            <th class="column">Going to</th>
+                            <th class="columnsmall">Age</th>
+                            <th class="columnsmall">Gender</th>
+                            <th class="column3">Action</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for project in project_list %}
+                        <tr>
+                            <td class="column">{{ project.Name|title }}</td>
+                            <td class="column">{{ project.Leaving_From }}</td>
+                            <td class="column">{{ project.Going_To }}</td>
+                            <td class="columnsmall">{{ project.Age }}</td>
+                            <td class="columnsmall">{{ project.Gender }}</td>
+                            <td class="column3"><a href="{{ project.get_absolute_url }}" class="btn btn-info">View</a>
+                                &nbsp
+                                <a href="{% url 'core:project_update' project.pk %}" class="btn btn-success">Edit</a>
+                                &nbsp
+                                <form style="display:inline;" action="{% url 'core:project_delete' project.pk %}"
+                                      method="post"
+                                      onsubmit="return confirm('Are you sure you want to delete {{ project.name1|escapejs  }}?')">
+                                    {% csrf_token %}
+                                    <input class="btn btn-danger" type="submit" value="Delete"/>
+                                </form>
+                            </td>
+
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}

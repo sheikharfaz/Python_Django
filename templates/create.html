@@ -1,0 +1,182 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load form_field %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div style="padding-top:70px;"  class="background12">
+    <div class="container">
+        {% if object %}
+        <h2 style="text-align:center; padding:10px; color:grey;">Update Form - {{ project.name1}}</h2>
+        {% else %}
+        <h2 style="text-align:center; padding:10px; color:grey;">Fill the Form and Travel with us</h2>
+        {% endif %}
+    </div>
+    <hr>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="container" style="width:60%;">
+            <div class="row">
+                <div class="col-md-2">
+            <span class="badge" style="color:white; font-size:15px; ">Name</span>
+                </div>
+                <div class="col-md-8">
+                    <div id="name1" class="form-row">
+                        {{form.Name|add_class:"form-control"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+
+        <div class="container" style="width:60%">
+            <div class="row">
+                <div class="col-md-2">
+            <span class="badge" style="color:white; font-size:15px; f;">
+                 Age
+            </span>
+                </div>
+                <div class="col-md-4">
+                    <div id="name2" class="form-row">
+                        {{form.Age|add_class:"form-control"}}
+                    </div>
+                </div>
+                <div class="col-md-2" style="text-align:right">
+            <span class="badge" style="color:white; font-size:15px;">
+                Gender
+            </span>
+                </div>
+                <div class="col-md-4">
+                    <div id="name3" class="form-row">
+                        {{form.Gender|add_class:"form-control"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+
+        <div class="container" style="width:60%">
+            <div class="row">
+                <div class="col-md-2" >
+            <span class="badge" style="color:white; font-size:15px; ">
+                Leaving From
+            </span>
+                </div>
+                <div class="col-md-4">
+                    <div id="name4" class="form-row">
+                        {{form.Leaving_From|add_class:"form-control"}}
+                    </div>
+                </div>
+                <div class="col-md-2" style="text-align:right">
+            <span class="badge" style="color:white; font-size:15px; ">
+                Going To
+            </span>
+                </div>
+                <div class="col-md-4">
+                    <div id="name5" class="form-row">
+                        {{form.Going_To|add_class:"form-control"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+
+        <div class="container" style="width:60%">
+            <div class="row">
+                <div class="col-md-2">
+            <span class="badge" style="color:white; font-size:15px; ">
+                Date of Journey
+            </span>
+                </div>
+                <div class="col-md-4">
+                    <div id="name6" class="form-row">
+                        {{form.Date_Of_Journey}}
+                    </div>
+                </div>
+                <div class="col-md-2" style="text-align:right">
+            <span class="badge" style="color:white; font-size:15px; ">
+                Date of Return
+            </span>
+                </div>
+                <div class="col-md-4" style="text-align:right">
+                    <div id="name7" class="form-row">
+                        {{form.Date_of_return}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+
+        <div class="container" style="width:60%">
+            <div class="row">
+                <div class="col-md-2">
+            <span class="badge" style="color:white; font-size:13px;">
+                Additional Feature
+            </span>
+                </div>
+                <div class="col-md-2">
+                    <div id="name8" class="form-row">
+                        {{form.Additional_feature|addclass:"form-control"}}
+                    </div>
+                </div>
+                <div class="col-md-1">
+            <span class="badge" style="color:white; font-size:13px; ">
+                Services
+            </span>
+                </div>
+                <div class="col-md-2">
+                    <div id="name9" class="form-row">
+                        {{form.services|addclass:"myclass"}}
+                    </div>
+                </div>
+                <div class="col-md-2" >
+            <span class="badge" style="color:white; font-size:13px;">
+                Type of Vehicle
+            </span>
+                </div>
+                <div class="col-md-3" >
+                    <div id="name10" class="form-row" >
+                        {{form.Type_of_vehicle|addclass:"myclass"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="width:60%; align-content:center;">
+            <div class="d-flex justify-content-center">
+                {% if object %}
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit" value="save">
+                        <span class="glyphicon glyphicon-ok"></span>Save
+                    </button>
+                    {% else %}
+                    <div class="form-group">
+                        <button class="btn btn-success" type="submit" value="Create">
+                            <span class="glyphicon glyphicon-ok"></span>Add
+                        </button>
+                        {% endif %}
+
+                        <a href="{% url 'core:project' %}" class="btn btn-default"> Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<script>
+  $(function () {
+    $("#id_Date_Of_Journey").datetimepicker({
+      format: 'd/m/Y',
+    });
+
+    $("#id_Date_of_return").datetimepicker({
+      format: 'd/m/Y',
+    });
+  });
+</script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
