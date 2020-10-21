@@ -5,11 +5,16 @@ from .models import *
 @admin.register(HotelModel)
 class HotelAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('hotelName',), }
-    list_display = ['hotelName', 'Price', 'status', 'Room_no', 'Room_availability', 'slug']
+    list_display = ['hotelName', 'Price', 'status', 'slug']
 
 
 @admin.register(GuestReservation)
 class GuestAdmin(admin.ModelAdmin):
         list_display = ['customer_name', 'mobileNumber', 'Age', 'hotel']
+
+
+@admin.register(RoomAvailable)
+class RoomAdmin(admin.ModelAdmin):
+        list_display = [ 'hotel', 'roomNumber', 'Room_availability']
 
 
