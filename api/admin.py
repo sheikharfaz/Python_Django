@@ -10,7 +10,7 @@ class HotelAdmin(admin.ModelAdmin):
 
 @admin.register(GuestReservation)
 class GuestAdmin(admin.ModelAdmin):
-        list_display = ['customer_name', 'mobileNumber', 'Age', 'hotel']
+        list_display = ['customer_name', 'mobileNumber', 'Age', 'hotel', 'room_number']
 
 
 @admin.register(RoomAvailable)
